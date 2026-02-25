@@ -6,4 +6,11 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Folder Include="src\StockAnalysis\Core\" />
+      <Folder Include="src\StockAnalysis\Exceptions\" />
+      <Folder Include="src\StockAnalysis\Indicators\" />
+      <Folder Include="src\StockAnalysis\Interfaces\" />
+    </ItemGroup>
+
 </Project>
