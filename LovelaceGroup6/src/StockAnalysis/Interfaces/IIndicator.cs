@@ -12,5 +12,5 @@ namespace LovelaceGroup6.StockAnalysis.Interfaces;
 /// </remarks>
 public interface IIndicator
 {
-    IReadOnlyList<decimal> Calculate(IReadOnlyList<StockDataPoint> data);
+    IReadOnlyList<IndicatorResult> Calculate(IReadOnlyList<StockDataPoint> data);
 }

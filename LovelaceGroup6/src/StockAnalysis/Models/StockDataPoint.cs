@@ -13,7 +13,7 @@ namespace LovelaceGroup6.StockAnalysis.Models;
 /// <exception cref="ArgumentException">
 /// Thrown when the low price exceeds the high price, which is an invalid state.
 /// </exception>
-public class StockDataPoint
+public sealed class StockDataPoint
 {
     /// <summary>
     /// Gets the date and time associated with this stock data point.
