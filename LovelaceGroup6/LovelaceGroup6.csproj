@@ -9,7 +9,6 @@
     <ItemGroup>
       <Folder Include="src\StockAnalysis\Core\" />
       <Folder Include="src\StockAnalysis\Exceptions\" />
-      <Folder Include="src\StockAnalysis\Indicators\" />
     </ItemGroup>
 
 </Project>
