@@ -1,6 +1,6 @@
 using LovelaceGroup6.src.StockAnalysis.Indicators;
 using LovelaceGroup6.StockAnalysis.Models;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using LovelaceGroup6.Tests.Utilities;
 
 namespace LovelaceGroup6.Tests;
 
@@ -15,7 +15,7 @@ public class SimpleMovingAverageTests
         for (int i = 0; i < count; i++)
         {
             var price = basePrice + i;
-            data.Add(new StockDataPoint(
+            data.Add(StockDataPointFactory.Create(
                 timestamp: startDate.AddDays(i),
                 open: price,
                 high: price + 2,
@@ -67,11 +67,11 @@ public class SimpleMovingAverageTests
     {
         var data = new List<StockDataPoint>
         {
-            new StockDataPoint(new DateTime(2024, 1, 1), 10, 12, 9, 10, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 2), 20, 22, 19, 20, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 3), 30, 32, 29, 30, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 4), 40, 42, 39, 40, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 5), 50, 52, 49, 50, 1000)
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 1), open: 10, high: 12, low: 9, close: 10, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 2), open: 20, high: 22, low: 19, close: 20, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 3), open: 30, high: 32, low: 29, close: 30, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 4), open: 40, high: 42, low: 39, close: 40, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 5), open: 50, high: 52, low: 49, close: 50, volume: 1000)
         };
         var sma = new SimpleMovingAverage(3, data => data.Close);
 
@@ -94,10 +94,10 @@ public class SimpleMovingAverageTests
     {
         var data = new List<StockDataPoint>
         {
-            new StockDataPoint(new DateTime(2024, 1, 1), 10, 12, 9, 100, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 2), 20, 22, 19, 200, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 3), 30, 32, 29, 300, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 4), 40, 42, 39, 400, 1000)
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 1), open: 10, high: 12, low: 9, close: 100, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 2), open: 20, high: 22, low: 19, close: 200, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 3), open: 30, high: 32, low: 29, close: 300, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 4), open: 40, high: 42, low: 39, close: 400, volume: 1000)
         };
         var sma = new SimpleMovingAverage(2, data => data.Close);
 
@@ -117,11 +117,11 @@ public class SimpleMovingAverageTests
     {
         var data = new List<StockDataPoint>
         {
-            new StockDataPoint(new DateTime(2024, 1, 1), 10, 12, 9, 100, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 2), 20, 22, 19, 200, 2000),
-            new StockDataPoint(new DateTime(2024, 1, 3), 30, 32, 29, 300, 3000),
-            new StockDataPoint(new DateTime(2024, 1, 4), 40, 42, 39, 400, 4000),
-            new StockDataPoint(new DateTime(2024, 1, 5), 50, 52, 49, 500, 5000)
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 1), open: 10, high: 12, low: 9, close: 100, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 2), open: 20, high: 22, low: 19, close: 200, volume: 2000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 3), open: 30, high: 32, low: 29, close: 300, volume: 3000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 4), open: 40, high: 42, low: 39, close: 400, volume: 4000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 5), open: 50, high: 52, low: 49, close: 500, volume: 5000)
         };
         var smaVolume = new SimpleMovingAverage(3, data => data.Volume);
 
@@ -141,11 +141,11 @@ public class SimpleMovingAverageTests
     {
         var data = new List<StockDataPoint>
         {
-            new StockDataPoint(new DateTime(2024, 1, 1), 10, 12, 9, 100, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 2), 20, 22, 19, 200, 2000),
-            new StockDataPoint(new DateTime(2024, 1, 3), 30, 32, 29, 300, 3000),
-            new StockDataPoint(new DateTime(2024, 1, 4), 40, 42, 39, 400, 4000),
-            new StockDataPoint(new DateTime(2024, 1, 5), 50, 52, 49, 500, 5000)
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 1), open: 10, high: 12, low: 9, close: 100, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 2), open: 20, high: 22, low: 19, close: 200, volume: 2000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 3), open: 30, high: 32, low: 29, close: 300, volume: 3000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 4), open: 40, high: 42, low: 39, close: 400, volume: 4000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 5), open: 50, high: 52, low: 49, close: 500, volume: 5000)
         };
         var smaOpen = new SimpleMovingAverage(3, data => data.Open);
 
@@ -165,11 +165,11 @@ public class SimpleMovingAverageTests
     {
         var data = new List<StockDataPoint>
         {
-            new StockDataPoint(new DateTime(2024, 1, 1), 10, 100, 9, 50, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 2), 20, 200, 19, 50, 2000),
-            new StockDataPoint(new DateTime(2024, 1, 3), 30, 300, 29, 50, 3000),
-            new StockDataPoint(new DateTime(2024, 1, 4), 40, 400, 39, 50, 4000),
-            new StockDataPoint(new DateTime(2024, 1, 5), 50, 500, 49, 50, 5000)
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 1), open: 10, high: 100, low: 9, close: 50, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 2), open: 20, high: 200, low: 19, close: 50, volume: 2000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 3), open: 30, high: 300, low: 29, close: 50, volume: 3000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 4), open: 40, high: 400, low: 39, close: 50, volume: 4000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 5), open: 50, high: 500, low: 49, close: 50, volume: 5000)
         };
         var smaHigh = new SimpleMovingAverage(3, data => data.High);
 
@@ -189,11 +189,11 @@ public class SimpleMovingAverageTests
     {
         var data = new List<StockDataPoint>
         {
-            new StockDataPoint(new DateTime(2024, 1, 1), 50, 100, 10, 50, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 2), 50, 200, 20, 50, 2000),
-            new StockDataPoint(new DateTime(2024, 1, 3), 50, 300, 30, 50, 3000),
-            new StockDataPoint(new DateTime(2024, 1, 4), 50, 400, 40, 50, 4000),
-            new StockDataPoint(new DateTime(2024, 1, 5), 50, 500, 50, 50, 5000)
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 1), open: 50, high: 100, low: 10, close: 50, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 2), open: 50, high: 200, low: 20, close: 50, volume: 2000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 3), open: 50, high: 300, low: 30, close: 50, volume: 3000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 4), open: 50, high: 400, low: 40, close: 50, volume: 4000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 5), open: 50, high: 500, low: 50, close: 50, volume: 5000)
         };
         var smaLow = new SimpleMovingAverage(3, data => data.Low);
 
@@ -213,11 +213,11 @@ public class SimpleMovingAverageTests
     {
         var data = new List<StockDataPoint>
         {
-            new StockDataPoint(new DateTime(2024, 1, 1), 10.33m, 12, 9, 10.33m, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 2), 20.66m, 22, 19, 20.66m, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 3), 30.99m, 32, 29, 30.99m, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 4), 40.12m, 42, 39, 40.12m, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 5), 50.45m, 52, 49, 50.45m, 1000)
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 1), open: 10.33m, high: 12, low: 9, close: 10.33m, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 2), open: 20.66m, high: 22, low: 19, close: 20.66m, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 3), open: 30.99m, high: 32, low: 29, close: 30.99m, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 4), open: 40.12m, high: 42, low: 39, close: 40.12m, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 5), open: 50.45m, high: 52, low: 49, close: 50.45m, volume: 1000)
         };
         var sma = new SimpleMovingAverage(3, data => data.Close);
 
@@ -316,11 +316,11 @@ public class SimpleMovingAverageTests
     {
         var data = new List<StockDataPoint>
         {
-            new StockDataPoint(new DateTime(2024, 1, 1), 0, 0, 0, 0, 0),
-            new StockDataPoint(new DateTime(2024, 1, 2), 0, 0, 0, 0, 0),
-            new StockDataPoint(new DateTime(2024, 1, 3), 0, 0, 0, 0, 0),
-            new StockDataPoint(new DateTime(2024, 1, 4), 0, 0, 0, 0, 0),
-            new StockDataPoint(new DateTime(2024, 1, 5), 0, 0, 0, 0, 0)
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 1), open: 0, high: 0, low: 0, close: 0, volume: 0),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 2), open: 0, high: 0, low: 0, close: 0, volume: 0),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 3), open: 0, high: 0, low: 0, close: 0, volume: 0),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 4), open: 0, high: 0, low: 0, close: 0, volume: 0),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 5), open: 0, high: 0, low: 0, close: 0, volume: 0)
         };
         var sma = new SimpleMovingAverage(3, data => data.Close);
 
@@ -337,11 +337,11 @@ public class SimpleMovingAverageTests
     {
         var data = new List<StockDataPoint>
         {
-            new StockDataPoint(new DateTime(2024, 1, 1), 50, 50, 50, 50, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 2), 50, 50, 50, 50, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 3), 50, 50, 50, 50, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 4), 50, 50, 50, 50, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 5), 50, 50, 50, 50, 1000)
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 1), open: 50, high: 50, low: 50, close: 50, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 2), open: 50, high: 50, low: 50, close: 50, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 3), open: 50, high: 50, low: 50, close: 50, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 4), open: 50, high: 50, low: 50, close: 50, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 5), open: 50, high: 50, low: 50, close: 50, volume: 1000)
         };
         var sma = new SimpleMovingAverage(3, data => data.Close);
 
@@ -358,11 +358,11 @@ public class SimpleMovingAverageTests
     {
         var data = new List<StockDataPoint>
         {
-            new StockDataPoint(new DateTime(2024, 1, 1), 0, 0, -10, -10, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 2), 0, 0, -20, -20, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 3), 0, 0, -30, -30, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 4), 0, 0, -40, -40, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 5), 0, 0, -50, -50, 1000)
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 1), open: 0, high: 0, low: -10, close: -10, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 2), open: 0, high: 0, low: -20, close: -20, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 3), open: 0, high: 0, low: -30, close: -30, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 4), open: 0, high: 0, low: -40, close: -40, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 5), open: 0, high: 0, low: -50, close: -50, volume: 1000)
         };
         var sma = new SimpleMovingAverage(3, data => data.Close);
 
@@ -382,11 +382,11 @@ public class SimpleMovingAverageTests
     {
         var data = new List<StockDataPoint>
         {
-            new StockDataPoint(new DateTime(2024, 1, 1), 1000000m, 1000000m, 1000000m, 1000000m, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 2), 2000000m, 2000000m, 2000000m, 2000000m, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 3), 3000000m, 3000000m, 3000000m, 3000000m, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 4), 4000000m, 4000000m, 4000000m, 4000000m, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 5), 5000000m, 5000000m, 5000000m, 5000000m, 1000)
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 1), open: 1000000m, high: 1000000m, low: 1000000m, close: 1000000m, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 2), open: 2000000m, high: 2000000m, low: 2000000m, close: 2000000m, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 3), open: 3000000m, high: 3000000m, low: 3000000m, close: 3000000m, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 4), open: 4000000m, high: 4000000m, low: 4000000m, close: 4000000m, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 5), open: 5000000m, high: 5000000m, low: 5000000m, close: 5000000m, volume: 1000)
         };
         var sma = new SimpleMovingAverage(3, data => data.Close);
 
@@ -464,10 +464,10 @@ public class SimpleMovingAverageTests
     {
         var data = new List<StockDataPoint>
         {
-            new StockDataPoint(new DateTime(2024, 1, 3), 30, 32, 29, 30, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 1), 10, 12, 9, 10, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 2), 20, 22, 19, 20, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 4), 40, 42, 39, 40, 1000)
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 3), open: 30, high: 32, low: 29, close: 30, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 1), open: 10, high: 12, low: 9, close: 10, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 2), open: 20, high: 22, low: 19, close: 20, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 4), open: 40, high: 42, low: 39, close: 40, volume: 1000)
         };
         var sma = new SimpleMovingAverage(3, data => data.Close);
 
@@ -482,11 +482,11 @@ public class SimpleMovingAverageTests
         // Note: Implementation only validates chronological order (>=), allowing duplicates
         var data = new List<StockDataPoint>
         {
-            new StockDataPoint(new DateTime(2024, 1, 1), 10, 12, 9, 10, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 1), 20, 22, 19, 20, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 2), 30, 32, 29, 30, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 3), 40, 42, 39, 40, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 4), 50, 52, 49, 50, 1000)
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 1), open: 10, high: 12, low: 9, close: 10, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 1), open: 20, high: 22, low: 19, close: 20, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 2), open: 30, high: 32, low: 29, close: 30, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 3), open: 40, high: 42, low: 39, close: 40, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 4), open: 50, high: 52, low: 49, close: 50, volume: 1000)
         };
         var sma = new SimpleMovingAverage(3, data => data.Close);
 
@@ -505,12 +505,12 @@ public class SimpleMovingAverageTests
     {
         var data = new List<StockDataPoint>
         {
-            new StockDataPoint(new DateTime(2024, 1, 1), 10, 12, 9, 10, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 2), 20, 22, 19, 20, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 3), 30, 32, 29, 30, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 4), 40, 42, 39, 40, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 5), 50, 52, 49, 50, 1000),
-            new StockDataPoint(new DateTime(2024, 1, 6), 60, 62, 59, 60, 1000)
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 1), open: 10, high: 12, low: 9, close: 10, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 2), open: 20, high: 22, low: 19, close: 20, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 3), open: 30, high: 32, low: 29, close: 30, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 4), open: 40, high: 42, low: 39, close: 40, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 5), open: 50, high: 52, low: 49, close: 50, volume: 1000),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 6), open: 60, high: 62, low: 59, close: 60, volume: 1000)
         };
         var sma = new SimpleMovingAverage(3, data => data.Close);
 

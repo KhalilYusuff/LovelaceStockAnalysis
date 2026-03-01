@@ -8,6 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Core\**" />
+    <EmbeddedResource Remove="Core\**" />
+    <None Remove="Core\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="MSTest" Version="4.0.1" />
   </ItemGroup>
 
@@ -16,7 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Core\Validation\" />
     <Folder Include="Models\" />
   </ItemGroup>
 
