@@ -1,5 +1,6 @@
 using LovelaceGroup6.src.StockAnalysis.Indicators;
 using LovelaceGroup6.StockAnalysis.Models;
+using LovelaceGroup6.Tests.Utilities;
 
 namespace LovelaceGroup6.Tests.Indicators;
 
@@ -41,9 +42,9 @@ public class VolatilityTests
         const decimal expectedStandardDeviation = 2m;
         var data = new List<StockDataPoint>
         {
-            CreateDataPoint(open: 1m, close: 0m),
-            CreateDataPoint(open: 1m, close: 2m),
-            CreateDataPoint(open: 1m, close: 4m)
+            StockDataPointFactory.Create(open: 1m, close: 0m),
+            StockDataPointFactory.Create(open: 1m, close: 2m),
+            StockDataPointFactory.Create(open: 1m, close: 4m)
         };
         var volatility = new Volatility(period, x => x.Close);
 
@@ -62,9 +63,9 @@ public class VolatilityTests
         const decimal expectedStandardDeviation = 2m;
         var data = new List<StockDataPoint>
         {
-            CreateDataPoint(open: 0m, close: 10m),
-            CreateDataPoint(open: 2m, close: 10m),
-            CreateDataPoint(open: 4m, close: 10m)
+            StockDataPointFactory.Create(open: 0m, close: 10m),
+            StockDataPointFactory.Create(open: 2m, close: 10m),
+            StockDataPointFactory.Create(open: 4m, close: 10m)
         };
         var volatility = new Volatility(period, x => x.Open);
 
@@ -73,16 +74,5 @@ public class VolatilityTests
 
         // Assert
         Assert.AreEqual(expectedStandardDeviation, results[0].Value);
-    }
-
-    private static StockDataPoint CreateDataPoint(decimal open, decimal close)
-    {
-        return new StockDataPoint(
-            timestamp: DateTime.Today,
-            open: open,
-            high: 10m,
-            low: 1m,
-            close: close,
-            volume: 100m);
     }
 }
