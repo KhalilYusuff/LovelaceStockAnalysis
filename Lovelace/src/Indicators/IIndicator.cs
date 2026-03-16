@@ -1,6 +1,6 @@
-using LovelaceGroup6.StockAnalysis.Models;
+using StockAnalysis.Models;
 
-namespace LovelaceGroup6.StockAnalysis.Interfaces;
+namespace StockAnalysis.Indicators;
 
 /// <summary>
 /// Represents an interface for calculating stock analysis indicators based on stock price data.

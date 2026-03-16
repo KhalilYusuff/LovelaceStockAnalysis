@@ -1,9 +1,7 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using LovelaceGroup6.src.StockAnalysis.Indicators;
-using LovelaceGroup6.StockAnalysis.Models;
-using System;
-using System.Collections.Generic;
-namespace LovelaceGroup6.Tests.Indicators
+using StockAnalysis.Indicators;
+using StockAnalysis.Models;
+
+namespace StockAnalysis.Tests.Indicators
 {
     [TestClass]
     public class ReturnCalculationTests
@@ -11,7 +9,6 @@ namespace LovelaceGroup6.Tests.Indicators
         [TestMethod]
         public void Calculate_ReturnsCorrectReturnValues()
         {
-            // Arrange (prepare test data)
             var data = new List<StockDataPoint>
             {
                 new StockDataPoint(new DateTime(2024,1,1), 0,0,0,100,0),
@@ -21,11 +18,9 @@ namespace LovelaceGroup6.Tests.Indicators
 
             var indicator = new ReturnCalculation();
 
-            // Act (run the calculation)
             var result = indicator.Calculate(data);
-
-            // Assert (check if result is correct)
-            Assert.AreEqual(2, result.Count);
+            var count = result.Count;
+            Assert.AreEqual(2, count);
 
             Assert.AreEqual(0.10m, result[0].Value);
             Assert.AreEqual(0.10m, result[1].Value);
@@ -33,7 +28,6 @@ namespace LovelaceGroup6.Tests.Indicators
         [TestMethod]
         public void Calculate_ReturnsNegativeReturn_WhenPriceDrops()
         {
-            // Arrange (create test data)
             var data = new List<StockDataPoint>
             {
                 new StockDataPoint(new DateTime(2024,1,1), 0,0,0,100,0),
@@ -42,11 +36,9 @@ namespace LovelaceGroup6.Tests.Indicators
 
             var indicator = new ReturnCalculation();
 
-            // Act (run calculation)
             var result = indicator.Calculate(data);
-
-            // Assert (check the result)
-            Assert.AreEqual(1, result.Count);
+            var count = result.Count;
+            Assert.AreEqual(1, count);
             Assert.AreEqual(-0.10m, result[0].Value);
         }
         [TestMethod]

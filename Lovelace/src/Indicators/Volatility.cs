@@ -1,8 +1,8 @@
-﻿using LovelaceGroup6.src.StockAnalysis.Core.Validation;
-using LovelaceGroup6.StockAnalysis.Interfaces;
-using LovelaceGroup6.StockAnalysis.Models;
+﻿using StockAnalysis.Core.Validation;
+using StockAnalysis.Indicators;
+using StockAnalysis.Models;
 
-namespace LovelaceGroup6.src.StockAnalysis.Indicators;
+namespace StockAnalysis.Indicators;
 
 
 /// <summary>

@@ -1,6 +1,6 @@
 using System;
 
-namespace LovelaceGroup6.src.StockAnalysis.Core.Exceptions
+namespace Lovelace.src.StockAnalysis.Core.Exceptions
 {
     /// <summary>
     /// Thrown when stock data is not in the correct chronological order.
@@ -10,5 +10,6 @@ namespace LovelaceGroup6.src.StockAnalysis.Core.Exceptions
         public DataOrderException(string message) : base(message)
         {
         }
+        
     }
 }

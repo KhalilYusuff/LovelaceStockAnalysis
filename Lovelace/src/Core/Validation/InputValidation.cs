@@ -1,9 +1,6 @@
-﻿using LovelaceGroup6.StockAnalysis.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using StockAnalysis.Models;
 
-namespace LovelaceGroup6.src.StockAnalysis.Core.Validation
+namespace StockAnalysis.Core.Validation
 {
     /// <summary>
     /// Provides static methods for validating input data and parameters used in stock data analysis operations.

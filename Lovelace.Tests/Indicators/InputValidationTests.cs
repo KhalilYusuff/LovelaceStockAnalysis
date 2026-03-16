@@ -1,10 +1,7 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using LovelaceGroup6.src.StockAnalysis.Core.Validation;
-using LovelaceGroup6.StockAnalysis.Models;
-using System;
-using System.Collections.Generic;
+using StockAnalysis.Core.Validation;
+using StockAnalysis.Models;
 
-namespace LovelaceGroup6.Tests.Indicators
+namespace StockAnalysis.Tests.Indicators
 {
     [TestClass]
     public class InputValidationTests

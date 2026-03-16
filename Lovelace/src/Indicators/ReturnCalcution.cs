@@ -1,11 +1,9 @@
-using LovelaceGroup6.src.StockAnalysis.Core.Validation;
-using LovelaceGroup6.StockAnalysis.Interfaces;
-using LovelaceGroup6.StockAnalysis.Models;
-using System;
-using System.Collections.Generic;
+using StockAnalysis.Core.Validation;
+using StockAnalysis.Indicators;
+using StockAnalysis.Models;
 
-namespace LovelaceGroup6.src.StockAnalysis.Indicators
-{
+namespace StockAnalysis.Indicators;
+
     public sealed class ReturnCalculation : IIndicator
     {
         public IReadOnlyList<IndicatorResult> Calculate(IReadOnlyList<StockDataPoint> data)
@@ -34,4 +32,3 @@ namespace LovelaceGroup6.src.StockAnalysis.Indicators
             return results.AsReadOnly();
         }
     }
-}

@@ -1,12 +1,9 @@
-﻿using LovelaceGroup6.src.StockAnalysis.Core.Validation;
-using LovelaceGroup6.StockAnalysis.Interfaces;
-using LovelaceGroup6.StockAnalysis.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using StockAnalysis.Core.Validation;
+using StockAnalysis.Indicators;
+using StockAnalysis.Models;
 
-namespace LovelaceGroup6.src.StockAnalysis.Indicators
-{
+namespace StockAnalysis.Indicators;
+
     /// <summary>
     /// Represents a simple moving average (SMA) indicator for time series data, such as stock prices.
     /// </summary>
@@ -65,4 +62,4 @@ namespace LovelaceGroup6.src.StockAnalysis.Indicators
             return result;
         }
     }
-}
+

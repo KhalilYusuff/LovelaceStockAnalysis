@@ -1,4 +1,4 @@
 <Solution>
-    <Project Path="LovelaceGroup6.Tests/LovelaceGroup6.Tests.csproj" />
-    <Project Path="LovelaceGroup6/LovelaceGroup6.csproj" />
+    <Project Path="Lovelace.Tests\Lovelace.Tests.csproj" />
+    <Project Path="Lovelace\Lovelace.csproj" />
 </Solution>
