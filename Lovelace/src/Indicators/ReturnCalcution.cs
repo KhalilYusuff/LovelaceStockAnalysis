@@ -1,11 +1,22 @@
 using StockAnalysis.Core.Validation;
 using StockAnalysis.Indicators;
 using StockAnalysis.Models;
+using System;
+using System.Collections.Generic;
 
 namespace StockAnalysis.Indicators;
 
     public sealed class ReturnCalculation : IIndicator
     {
+        // this Selector will decides which value to use (Close, Open, High, etc.)
+        private readonly Func<StockDataPoint, decimal> _selector;
+
+        // Constructor
+        public ReturnCalculation(Func<StockDataPoint, decimal> selector)
+        {
+            _selector = selector ?? throw new ArgumentNullException(nameof(selector));
+        }
+
         public IReadOnlyList<IndicatorResult> Calculate(IReadOnlyList<StockDataPoint> data)
         {
             InputValidation.ValidateData(data);
@@ -14,16 +25,16 @@ namespace StockAnalysis.Indicators;
 
             for (int i = 1; i < data.Count; i++)
             {
-                decimal previousClose = data[i - 1].Close;
-                decimal currentClose = data[i].Close;
-                
-                if (previousClose == 0)
+                decimal previousValue = _selector(data[i - 1]);
+                decimal currentValue = _selector(data[i]);
+
+                if (previousValue == 0)
                 {
                     throw new DivideByZeroException();
                 }
 
                 decimal returnValue =
-                    (currentClose - previousClose) / previousClose;
+                    (currentValue - previousValue) / previousValue;
 
                 results.Add(
                     new IndicatorResult(data[i].Timestamp, returnValue));

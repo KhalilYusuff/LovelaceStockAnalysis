@@ -16,7 +16,7 @@ namespace StockAnalysis.Tests.Indicators
                 new StockDataPoint(new DateTime(2024,1,3), 0,0,0,121,0)
             };
 
-            var indicator = new ReturnCalculation();
+            var indicator = new ReturnCalculation(x => x.Close);
 
             var result = indicator.Calculate(data);
             var count = result.Count;
@@ -34,7 +34,7 @@ namespace StockAnalysis.Tests.Indicators
                 new StockDataPoint(new DateTime(2024,1,2), 0,0,0,90,0)
             };
 
-            var indicator = new ReturnCalculation();
+            var indicator = new ReturnCalculation(x => x.Close);
 
             var result = indicator.Calculate(data);
             var count = result.Count;
@@ -48,10 +48,10 @@ namespace StockAnalysis.Tests.Indicators
             {
                 new StockDataPoint(new DateTime(2024,1,1),0,0,0,0,0),
                 new StockDataPoint(new DateTime(2024,1,2),0,0,0,100,0)
+                
             };
 
-            var indicator = new ReturnCalculation();
-
+            var indicator = new ReturnCalculation(x => x.Close);
             Action act = () => indicator.Calculate(data);
 
             Assert.ThrowsExactly<DivideByZeroException>(act);
