@@ -1,7 +1,7 @@
-using StockAnalysis.Core.Validation;
-using StockAnalysis.Models;
+using Lovelace.StockAnalysis.Core.Validation;
+using Lovelace.StockAnalysis.Models;
 
-namespace StockAnalysis.Tests.Indicators
+namespace Lovelace.StockAnalysis.Tests.Indicators
 {
     [TestClass]
     public class InputValidationTests

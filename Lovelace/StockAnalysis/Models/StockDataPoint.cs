@@ -1,4 +1,4 @@
-namespace StockAnalysis.Models;
+namespace Lovelace.StockAnalysis.Models;
 
 /// <summary>
 /// Represents a data point for a stock, encapsulating the price and volume

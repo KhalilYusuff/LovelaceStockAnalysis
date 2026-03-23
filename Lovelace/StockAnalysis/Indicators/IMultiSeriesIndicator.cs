@@ -1,6 +1,6 @@
-using StockAnalysis.Models;
+using Lovelace.StockAnalysis.Models;
 
-namespace StockAnalysis.Indicators;
+namespace Lovelace.StockAnalysis.Indicators;
 
 /// <summary>
 /// Defines a contract for calculating technical analysis indicators that operate on multiple series of stock data points.

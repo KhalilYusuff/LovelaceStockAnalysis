@@ -1,7 +1,7 @@
-using StockAnalysis.Indicators;
-using StockAnalysis.Models;
+using Lovelace.StockAnalysis.Indicators;
+using Lovelace.StockAnalysis.Models;
 
-namespace StockAnalysis.Tests.Indicators
+namespace Lovelace.StockAnalysis.Tests.Indicators
 {
     [TestClass]
     public class ReturnCalculationTests

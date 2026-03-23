@@ -1,6 +1,6 @@
 using System;
 
-namespace Lovelace.src.StockAnalysis.Core.Exceptions
+namespace Lovelace.StockAnalysis.Core.Exceptions
 {
     /// <summary>
     /// Thrown when an invalid period is provided for stock analysis calculations.

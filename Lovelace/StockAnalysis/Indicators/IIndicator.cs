@@ -1,6 +1,6 @@
-using StockAnalysis.Models;
+using Lovelace.StockAnalysis.Models;
 
-namespace StockAnalysis.Indicators;
+namespace Lovelace.StockAnalysis.Indicators;
 
 /// <summary>
 /// Represents an interface for calculating stock analysis indicators based on stock price data.

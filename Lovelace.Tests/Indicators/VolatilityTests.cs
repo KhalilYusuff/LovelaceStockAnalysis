@@ -1,8 +1,8 @@
-using StockAnalysis.Indicators;
-using StockAnalysis.Models;
-using StockAnalysis.Tests.Utilities;
+using Lovelace.StockAnalysis.Indicators;
+using Lovelace.StockAnalysis.Models;
+using Lovelace.StockAnalysis.Tests.Utilities;
 
-namespace StockAnalysis.Tests.Indicators;
+namespace Lovelace.StockAnalysis.Tests.Indicators;
 
 [TestClass]
 public class VolatilityTests

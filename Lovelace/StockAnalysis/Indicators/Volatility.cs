@@ -1,8 +1,7 @@
-﻿using StockAnalysis.Core.Validation;
-using StockAnalysis.Indicators;
-using StockAnalysis.Models;
+﻿using Lovelace.StockAnalysis.Core.Validation;
+using Lovelace.StockAnalysis.Models;
 
-namespace StockAnalysis.Indicators;
+namespace Lovelace.StockAnalysis.Indicators;
 
 
 /// <summary>

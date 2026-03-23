@@ -1,6 +1,6 @@
 using System;
 
-namespace Lovelace.src.StockAnalysis.Core.Exceptions
+namespace Lovelace.StockAnalysis.Core.Exceptions
 {
     /// <summary>
     /// Thrown when stock data is not in the correct chronological order.

@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using StockAnalysis.Core.Validation;
-using StockAnalysis.Indicators;
-using StockAnalysis.Models;
+﻿using Lovelace.StockAnalysis.Core.Validation;
+using Lovelace.StockAnalysis.Indicators;
+using Lovelace.StockAnalysis.Models;
 
 
-namespace StockAnalysis.Indicators;
+namespace Lovelace.StockAnalysis.Indicators;
     /// <summary>
     /// Represents an indicator that calculates the Exponential Moving Average (EMA) for a sequence of stock data points
     /// using a specified period and value selector function.

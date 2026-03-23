@@ -1,8 +1,8 @@
-using StockAnalysis.Indicators;
-using StockAnalysis.Models;
-using StockAnalysis.Tests.Utilities;
+using Lovelace.StockAnalysis.Indicators;
+using Lovelace.StockAnalysis.Models;
+using Lovelace.StockAnalysis.Tests.Utilities;
 
-namespace StockAnalysis.Tests.Indicators;
+namespace Lovelace.StockAnalysis.Tests.Indicators;
 
 [TestClass]
 public class ExponentialMovingAverageTests
@@ -11,7 +11,7 @@ public class ExponentialMovingAverageTests
     public void Constructor_NullSelector_ThrowsArgumentNullException()
     {
         Action act = () => new ExponentialMovingAverage(3, null!);
-
+        
         Assert.ThrowsExactly<ArgumentNullException>(act);
     }
 
