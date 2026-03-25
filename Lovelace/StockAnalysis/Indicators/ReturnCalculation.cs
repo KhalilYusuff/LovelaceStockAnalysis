@@ -16,7 +16,8 @@ public sealed class ReturnCalculation : IIndicator
 
     public ReturnCalculation(Func<StockDataPoint, decimal> selector)
     {
-        _selector = selector ?? throw new ArgumentNullException(nameof(selector));
+        InputValidation.ValidateSelector(selector);
+        _selector = selector;
     }
 
     /// <summary>
@@ -25,6 +26,10 @@ public sealed class ReturnCalculation : IIndicator
     /// <param name="data">A collection of stock data points used for return calculation.</param>
     /// <returns>A read-only list of <see cref="IndicatorResult"/> containing the calculated return values for each stock data point, except the first one.</returns>
     /// <exception cref="DivideByZeroException">Thrown when a stock data point's previous value is zero, resulting in a division by zero.</exception>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="data"/> is null.</exception>
+    /// <exception cref="ArgumentException">Thrown if <paramref name="data"/> is empty,
+    /// or if <paramref name="data"/>is not sorted in chronological order by timestamp.
+    /// </exception>
     public IReadOnlyList<IndicatorResult> Calculate(IReadOnlyList<StockDataPoint> data)
     {
         InputValidation.ValidateData(data);

@@ -17,7 +17,7 @@ public class VolatilityTests
         Action act = () => new Volatility(invalidPeriod, x => x.Close);
 
         // Assert
-        Assert.ThrowsExactly<ArgumentOutOfRangeException>(act);
+        Assert.ThrowsExactly<ArgumentException>(act);
     }
 
     [TestMethod]

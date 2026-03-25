@@ -1,7 +1,9 @@
 using Lovelace.StockAnalysis.Core.Validation;
+using Lovelace.StockAnalysis.Indicators;
 using Lovelace.StockAnalysis.Models;
+using Lovelace.StockAnalysis.Tests.Utilities;
 
-namespace Lovelace.StockAnalysis.Tests.Indicators
+namespace Lovelace.Tests.Core.Validation
 {
     [TestClass]
     public class InputValidationTests
@@ -51,6 +53,33 @@ namespace Lovelace.StockAnalysis.Tests.Indicators
         public void ValidatePeriod_WithValidPeriod_DoesNotThrow()
         {
             InputValidation.ValidatePeriod(5, 10);
+        }
+
+        [TestMethod]
+        public void ValidateVolitilityPeriod_WithLessThanTwo_DoesThrow()
+        {
+            Action act = () => InputValidation.ValidateVolatilityPeriod(1);
+            Assert.ThrowsExactly<ArgumentException>(act);
+        }
+
+        [TestMethod]
+        public void ValidateVolatitilyPeriod_WithValidPeriod_DoesNotThrow()
+        {
+            InputValidation.ValidateVolatilityPeriod(3);
+        }
+
+        [TestMethod]
+        public void ValidateSelector_DoesThrow()
+        {
+            Action act = () => InputValidation.ValidateSelector(null);
+
+            Assert.ThrowsExactly<ArgumentNullException>(act);
+        }
+
+        [TestMethod]
+        public void ValidateSelector_DoesNotThrow()
+        {
+            InputValidation.ValidateSelector(x => x.Open);
         }
     }
 }
