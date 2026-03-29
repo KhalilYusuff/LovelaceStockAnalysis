@@ -1,5 +1,6 @@
 using Lovelace.StockAnalysis.Indicators;
 using Lovelace.StockAnalysis.Models;
+using Lovelace.StockAnalysis.Core.Exceptions;
 
 namespace Lovelace.StockAnalysis.Tests.Indicators
 {
@@ -41,6 +42,7 @@ namespace Lovelace.StockAnalysis.Tests.Indicators
             Assert.AreEqual(1, count);
             Assert.AreEqual(-0.10m, result[0].Value);
         }
+        
         [TestMethod]
         public void Calculate_ThrowsException_WhenPreviousCloseIsZero()
         {

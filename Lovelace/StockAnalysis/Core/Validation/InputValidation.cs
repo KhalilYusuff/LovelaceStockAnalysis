@@ -1,4 +1,5 @@
 ﻿using Lovelace.StockAnalysis.Models;
+using Lovelace.StockAnalysis.Core.Exceptions;
 
 namespace Lovelace.StockAnalysis.Core.Validation
 {
@@ -16,8 +17,7 @@ namespace Lovelace.StockAnalysis.Core.Validation
         /// <param name="data">The collection of stock data points to validate. Cannot be null or empty.</param>
         /// <exception cref="ArgumentNullException">Thrown if <paramref name="data"/> is null.</exception>
         /// <exception cref="ArgumentException">Thrown if <paramref name="data"/> is empty.</exception>
-        /// <exception cref="ArgumentException">Thrown if the collection data is not sorted in chronological order by timestamp.</exception>
-
+        /// <exception cref="DataOrderException">Thrown if the collection data is not sorted in chronological order by timestamp.</exception>
         public static void ValidateData(IReadOnlyList<StockDataPoint>? data)
         {
             if (data == null)
@@ -40,8 +40,6 @@ namespace Lovelace.StockAnalysis.Core.Validation
         /// <param name="dataCount">The total number of available data points. Must be greater than or equal to <paramref name="period"/>.</param>
         /// <exception cref="ArgumentException">Thrown if <paramref name="period"/> is less than or equal to zero, or if <paramref name="period"/> is
         /// greater than <paramref name="dataCount"/>.</exception>
-        /// <exception cref="ArgumentException">Thrown if the collection is not sorted in chronological order by timestamp.</exception>
-
         public static void ValidatePeriod(int period, int dataCount)
         {
            
@@ -77,7 +75,7 @@ namespace Lovelace.StockAnalysis.Core.Validation
             {
                 if (data[i].Timestamp < data[i - 1].Timestamp)
                 {
-                    throw new ArgumentException("Data must be sorted chronologically.");
+                    throw new DataOrderException(i, data[i - 1].Timestamp, data[i].Timestamp);
                 }
             }
         }
@@ -95,5 +93,6 @@ namespace Lovelace.StockAnalysis.Core.Validation
                 "for example: x => x.Close ");
             }
         }
+        
     }
 }

@@ -1,5 +1,6 @@
 using Lovelace.StockAnalysis.Core.Validation;
 using Lovelace.StockAnalysis.Models;
+using Lovelace.StockAnalysis.Core.Exceptions;  // I added this line  
 
 namespace Lovelace.StockAnalysis.Indicators;
 
@@ -27,9 +28,9 @@ public sealed class ReturnCalculation : IIndicator
     /// <returns>A read-only list of <see cref="IndicatorResult"/> containing the calculated return values for each stock data point, except the first one.</returns>
     /// <exception cref="DivideByZeroException">Thrown when a stock data point's previous value is zero, resulting in a division by zero.</exception>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="data"/> is null.</exception>
-    /// <exception cref="ArgumentException">Thrown if <paramref name="data"/> is empty,
-    /// or if <paramref name="data"/>is not sorted in chronological order by timestamp.
-    /// </exception>
+    /// <exception cref="ArgumentException">Thrown if <paramref name="data"/> is empty.</exception>
+    /// <exception cref="DataOrderException">Thrown if <paramref name="data"/> is not sorted
+    /// in chronological order by timestamp.</exception>
     public IReadOnlyList<IndicatorResult> Calculate(IReadOnlyList<StockDataPoint> data)
     {
         InputValidation.ValidateData(data);

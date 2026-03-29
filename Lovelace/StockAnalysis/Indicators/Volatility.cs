@@ -1,5 +1,7 @@
 ﻿using Lovelace.StockAnalysis.Core.Validation;
 using Lovelace.StockAnalysis.Models;
+using Lovelace.StockAnalysis.Core.Exceptions; // ADDED THIS
+
 
 namespace Lovelace.StockAnalysis.Indicators;
 
@@ -53,10 +55,11 @@ public sealed class Volatility : IIndicator
     /// </returns>
     /// <exception cref="ArgumentNullException">Thrown if <paramref name="data"/> is null.</exception>
     /// <exception cref="ArgumentException">Thrown if <paramref name="data"/> is empty 
-    /// or if <paramref name="data"/>is not sorted in chronological order by timestamp.
     /// or if period is less than or equal to zero, 
     /// or if period is greater than data.Count.
     /// </exception>
+    /// <exception cref="DataOrderException">Thrown if <paramref name="data"/> is not sorted
+    /// in chronological order by timestamp.</exception>
 
     public IReadOnlyList<IndicatorResult> Calculate(IReadOnlyList<StockDataPoint> data)
     {

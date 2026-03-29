@@ -1,4 +1,5 @@
 using Lovelace.StockAnalysis.Models;
+using Lovelace.StockAnalysis.Core.Exceptions; // added 
 
 namespace Lovelace.StockAnalysis.Indicators;
 

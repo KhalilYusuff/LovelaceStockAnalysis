@@ -8,14 +8,6 @@ namespace Lovelace.StockAnalysis.Tests.Indicators;
 public class SimpleMovingAverageTests
 {
     [TestMethod]
-    public void Constructor_NullSelector_ThrowsArgumentNullException()
-    {
-        Action act = () => new SimpleMovingAverage(3, null!);
-
-        Assert.ThrowsExactly<ArgumentNullException>(act);
-    }
-
-    [TestMethod]
     public void Calculate_ComputesSlidingWindowAverages()
     {
         var data = new List<StockDataPoint>

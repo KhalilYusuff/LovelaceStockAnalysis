@@ -2,6 +2,7 @@ using Lovelace.StockAnalysis.Core.Validation;
 using Lovelace.StockAnalysis.Indicators;
 using Lovelace.StockAnalysis.Models;
 using Lovelace.StockAnalysis.Tests.Utilities;
+using Lovelace.StockAnalysis.Core.Exceptions;
 
 namespace Lovelace.Tests.Core.Validation
 {
@@ -24,7 +25,7 @@ namespace Lovelace.Tests.Core.Validation
         }
 
         [TestMethod]
-        public void ValidateData_WithNonChronologicalData_ThrowsArgumentException()
+        public void ValidateData_WithNonChronologicalData_ThrowsDataOrderException()
         {
             var data = new List<StockDataPoint>
             {
@@ -32,9 +33,8 @@ namespace Lovelace.Tests.Core.Validation
                 new StockDataPoint(new DateTime(2024, 1, 1), 0, 0, 0, 0, 0)
             };
             Action act = () => InputValidation.ValidateData(data);
-            Assert.ThrowsExactly<ArgumentException>(act);
+            Assert.ThrowsExactly<DataOrderException>(act);
         }
-
         [TestMethod]
         public void ValidatePeriod_WithZeroPeriod_ThrowsArgumentException()
         {
