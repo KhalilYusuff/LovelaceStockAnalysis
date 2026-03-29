@@ -1,7 +1,5 @@
 using Lovelace.StockAnalysis.Core.Validation;
-using Lovelace.StockAnalysis.Indicators;
 using Lovelace.StockAnalysis.Models;
-using Lovelace.StockAnalysis.Tests.Utilities;
 using Lovelace.StockAnalysis.Core.Exceptions;
 
 namespace Lovelace.Tests.Core.Validation

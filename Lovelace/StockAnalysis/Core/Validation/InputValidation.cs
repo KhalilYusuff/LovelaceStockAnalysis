@@ -1,6 +1,5 @@
 ﻿using Lovelace.StockAnalysis.Models;
 using Lovelace.StockAnalysis.Core.Exceptions;
-
 namespace Lovelace.StockAnalysis.Core.Validation
 {
     /// <summary>
