@@ -1,6 +1,4 @@
-﻿using Lovelace.StockAnalysis.Models;
-using Lovelace.StockAnalysis.Core.Exceptions;
-namespace Lovelace.StockAnalysis.Core.Validation
+﻿namespace Lovelace.StockAnalysis.Core
 {
     /// <summary>
     /// Provides static methods for validating input data and parameters used in stock data analysis operations.

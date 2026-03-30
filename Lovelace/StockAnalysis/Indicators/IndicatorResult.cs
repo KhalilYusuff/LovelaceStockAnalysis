@@ -1,4 +1,4 @@
-namespace Lovelace.StockAnalysis.Models;
+namespace Lovelace.StockAnalysis.Indicators;
 
 /// <summary>
 /// Represents the result of a technical analysis indicator calculation for a specific point in time.

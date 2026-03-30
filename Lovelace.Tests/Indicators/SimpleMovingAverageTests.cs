@@ -1,5 +1,4 @@
 using Lovelace.StockAnalysis.Indicators;
-using Lovelace.StockAnalysis.Models;
 using Lovelace.StockAnalysis.Tests.Utilities;
 
 namespace Lovelace.StockAnalysis.Tests.Indicators;

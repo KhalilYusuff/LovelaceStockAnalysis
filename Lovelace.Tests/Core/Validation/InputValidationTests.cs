@@ -1,8 +1,6 @@
-using Lovelace.StockAnalysis.Core.Validation;
-using Lovelace.StockAnalysis.Models;
-using Lovelace.StockAnalysis.Core.Exceptions;
+using Lovelace.StockAnalysis.Core;
 
-namespace Lovelace.Tests.Core.Validation
+namespace Lovelace.StockAnalysis.Tests.Core
 {
     [TestClass]
     public class InputValidationTests
@@ -70,7 +68,6 @@ namespace Lovelace.Tests.Core.Validation
         public void ValidateSelector_DoesThrow()
         {
             Action act = () => InputValidation.ValidateSelector(null);
-
             Assert.ThrowsExactly<ArgumentNullException>(act);
         }
 

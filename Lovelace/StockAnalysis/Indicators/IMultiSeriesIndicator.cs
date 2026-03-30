@@ -1,5 +1,3 @@
-using Lovelace.StockAnalysis.Models;
-
 namespace Lovelace.StockAnalysis.Indicators;
 
 /// <summary>
@@ -12,6 +10,13 @@ namespace Lovelace.StockAnalysis.Indicators;
 /// </remarks>
 public interface IMultiSeriesIndicator
 {
+    /// <summary>
+    /// Calculates indicator results for each series of stock data points.
+    /// </summary>
+    /// <param name="series">A collection of stock data series, where each inner list represents a sequence of data points for a single stock
+    /// or instrument. Cannot be null or contain null elements.</param>
+    /// <returns>A read-only list of indicator results, with one result for each input series. The list will be empty if no
+    /// series are provided.</returns>
     IReadOnlyList<IndicatorResult> Calculate(IReadOnlyList<IReadOnlyList<StockDataPoint>> series);
     
 }
