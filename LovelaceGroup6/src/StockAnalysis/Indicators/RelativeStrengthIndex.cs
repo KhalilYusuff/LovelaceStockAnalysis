@@ -76,6 +76,11 @@ public sealed class RelativeStrengthIndex : IMultiSeriesIndicator
                 $"RSI requires at least {_period + 1} data points for period {_period}.",
                 nameof(data));
 
+        // RSI calculation logic (price changes, gains/losses, initial averages and Wilder's smoothing)
+        // adapted from:
+        // BT. (2021, March 16). A step-by-step guide for calculating reliable RSI values programmatically.
+        // Medium. https://turmanaube.medium.com/a-step-by-step-guide-for-calculating-reliable-rsi-values-programmatically-a6a604a06b77
+
         // Calculate price changes and separate into gains and losses
         var gains = new List<decimal>();
         var losses = new List<decimal>();
