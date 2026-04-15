@@ -1,8 +1,7 @@
-﻿using LovelaceGroup6.src.StockAnalysis.Indicators;
-using LovelaceGroup6.StockAnalysis.Models;
-using LovelaceGroup6.Tests.Utilities;
+﻿using Lovelace.StockAnalysis.Indicators;
+using Lovelace.StockAnalysis.Tests.Utilities;
 
-namespace LovelaceGroup6.Tests.Indicators;
+namespace Lovelace.StockAnalysis.Tests.Indicators;
 
 [TestClass]
 

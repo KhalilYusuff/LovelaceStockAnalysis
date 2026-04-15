@@ -1,8 +1,6 @@
-﻿using LovelaceGroup6.src.StockAnalysis.Core.Validation;
-using LovelaceGroup6.StockAnalysis.Interfaces;
-using LovelaceGroup6.StockAnalysis.Models;
+﻿using Lovelace.StockAnalysis.Core;
 
-namespace LovelaceGroup6.src.StockAnalysis.Indicators;
+namespace Lovelace.StockAnalysis.Indicators;
 
 /// <summary>
 /// Calculates the Relative Strength Index (RSI) over a specified period.
@@ -26,9 +24,7 @@ public sealed class RelativeStrengthIndex : IMultiSeriesIndicator
     /// <exception cref="ArgumentException">Thrown if period is less than or equal to zero.</exception>
     public RelativeStrengthIndex(int period, Func<StockDataPoint, decimal> selector)
     {
-        if (selector == null)
-            throw new ArgumentNullException(nameof(selector));
-
+        InputValidation.ValidateSelector(selector);
         InputValidation.ValidatePeriod(period, int.MaxValue);
 
         _period = period;
