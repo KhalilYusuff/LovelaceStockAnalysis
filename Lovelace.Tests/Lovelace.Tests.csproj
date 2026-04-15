@@ -5,13 +5,8 @@
     <LangVersion>latest</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <RootNamespace>Lovelace.Tests</RootNamespace>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Compile Remove="Core\**" />
-    <EmbeddedResource Remove="Core\**" />
-    <None Remove="Core\**" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MSTest" Version="4.0.1" />
@@ -22,11 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\LovelaceGroup6\LovelaceGroup6.csproj" />
+    <ProjectReference Include="..\Lovelace\Lovelace.csproj" />
   </ItemGroup>
 
 </Project>

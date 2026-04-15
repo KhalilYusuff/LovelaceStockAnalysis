@@ -1,6 +1,4 @@
-﻿using LovelaceGroup6.StockAnalysis.Models;
-
-namespace LovelaceGroup6.Tests.Utilities;
+﻿namespace Lovelace.StockAnalysis.Tests.Utilities;
 
 /// <summary>
 /// Provides default methods for creating <see cref="StockDataPoint"/> instances in tests.

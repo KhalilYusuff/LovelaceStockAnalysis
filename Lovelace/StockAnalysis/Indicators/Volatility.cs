@@ -1,8 +1,6 @@
-﻿using LovelaceGroup6.src.StockAnalysis.Core.Validation;
-using LovelaceGroup6.StockAnalysis.Interfaces;
-using LovelaceGroup6.StockAnalysis.Models;
+﻿using Lovelace.StockAnalysis.Core;
 
-namespace LovelaceGroup6.src.StockAnalysis.Indicators;
+namespace Lovelace.StockAnalysis.Indicators;
 
 
 /// <summary>
@@ -29,32 +27,19 @@ public sealed class Volatility : IIndicator
     /// A function that selects the price value to use from each <see cref="StockDataPoint"/>,
     /// for example x => x.Close or x => x.High.
     /// </param>
-    /// <exception cref="ArgumentOutOfRangeException">
+    /// <exception cref="ArgumentException">
     /// Thrown when <paramref name="period"/> is less than 2. The number of data points in each rolling window
     /// must be at least 2, since standard deviation measures the spread 
     /// between values and requires a minimum of two data points to be meaningful.
     /// </exception>
-    /// <exception cref="ArgumentNullException">
-    /// Thrown when <paramref name="selector"/> is null.
-    /// </exception>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="selector"/> is null.</exception>
     public Volatility(int period, Func<StockDataPoint, decimal> selector)
     {
-        if (period < 2) 
-        {
-            throw new ArgumentOutOfRangeException(nameof(period), "Period must be at least 2.");
-        }
-
-
-        if (selector == null)
-        {
-
-            throw new ArgumentNullException(nameof(selector), "A price selector function must be provided," +
-                "for example: x => x.Close ");
-        }
+        InputValidation.ValidateVolatilityPeriod(period);
+        InputValidation.ValidateSelector(selector);
 
         _period = period;
         _selector = selector;
-
     }
 
     /// <summary>
@@ -65,6 +50,13 @@ public sealed class Volatility : IIndicator
     /// A list of <see cref="IndicatorResult"/> values containing the timestamp
     /// and the calculated standard deviation for each window.
     /// </returns>
+    /// <exception cref="ArgumentNullException">Thrown if <paramref name="data"/> is null.</exception>
+    /// <exception cref="ArgumentException">Thrown if <paramref name="data"/> is empty 
+    /// or if period is less than or equal to zero, 
+    /// or if period is greater than data.Count.
+    /// </exception>
+    /// <exception cref="DataOrderException">Thrown if <paramref name="data"/> is not sorted
+    /// in chronological order by timestamp.</exception>
 
     public IReadOnlyList<IndicatorResult> Calculate(IReadOnlyList<StockDataPoint> data)
     {
