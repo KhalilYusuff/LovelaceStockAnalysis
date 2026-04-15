@@ -18,5 +18,5 @@ public interface IMultiSeriesIndicator
     /// <returns>A read-only list of indicator results, with one result for each input series. The list will be empty if no
     /// series are provided.</returns>
     IReadOnlyList<IndicatorResult> Calculate(IReadOnlyList<IReadOnlyList<StockDataPoint>> series);
-    
+
 }
