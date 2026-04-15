@@ -15,6 +15,9 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+  - checkout: self
+    fetchDepth: 0
+    persistCredentials: true
   - task: NuGetToolInstaller@1
 
   - task: NuGetCommand@2
@@ -34,15 +37,13 @@ steps:
       projects: '**/*Tests.csproj'
       arguments: '--configuration $(buildConfiguration) --no-build'
 
-  - checkout: self
-    fetchDepth: 0
-    persistCredentials: true
+    
 
   - script: |
       git config user.email "khalily@hiof.no"
       git config user.name "khalil"
       git remote add github https://$(LovelaceAzurePipline)@github.com/KhalilYusuff/LovelaceStockAnalysis.git
-      git push github HEAD:main --force
+      git push github HEAD:refs/heads/main --force
     displayName: 'Mirror to GitHub'
     condition: succeeded()
     env:
