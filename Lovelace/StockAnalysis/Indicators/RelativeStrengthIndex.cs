@@ -18,14 +18,12 @@ public sealed class RelativeStrengthIndex : IMultiSeriesIndicator
     /// <summary>
     /// Initializes a new instance of the class.
     /// </summary>
-    /// <param name="period">Number of data points per RSI calculation. Must be greater than zero.</param>
+    /// <param name="period">Number of data points per RSI calculation.</param>
     /// <param name="selector">Selects the price value from each data point.</param>
     /// <exception cref="ArgumentNullException">Thrown if selector is null.</exception>
-    /// <exception cref="ArgumentException">Thrown if period is less than or equal to zero.</exception>
     public RelativeStrengthIndex(int period, Func<StockDataPoint, decimal> selector)
     {
         InputValidation.ValidateSelector(selector);
-        InputValidation.ValidatePeriod(period, int.MaxValue);
 
         _period = period;
         _selector = selector;
@@ -35,11 +33,8 @@ public sealed class RelativeStrengthIndex : IMultiSeriesIndicator
     /// Calculates RSI values for the provided stock data series.
     /// </summary>
     /// <param name="series">
-    /// A collection of stock data series where:
-    /// index 0 = price data (required),
-    /// index 1 = volume data (optional),
-    /// index 2 = benchmark data (optional).
-    /// Cannot be null or empty.
+    /// A collection of stock data series. Index 0 must contain
+    /// the price data used for RSI calculation. Cannot be null or empty.
     /// </param>
     /// <returns>A read-only list of RSI results between 0 and 100.</returns>
     /// <exception cref="ArgumentNullException">Thrown if series is null.</exception>
