@@ -25,12 +25,12 @@ public class RelativeStrengthIndexTest
     }
 
     [TestMethod]
-    public void Constructor_ZeroPeriod_ThrowsArgumentOutOfRangeException()
+    public void Constructor_ZeroPeriod_ThrowsArgumentException()
     {
         // Arrange & Act
         Action act = () => new RelativeStrengthIndex(0, x => x.Close);
         // Assert
-        Assert.ThrowsExactly<ArgumentOutOfRangeException>(act);
+        Assert.ThrowsExactly<ArgumentException>(act);
     }
 
     [TestMethod]
@@ -40,11 +40,11 @@ public class RelativeStrengthIndexTest
         const int period = 2;
         const double expectedRsi = 66.6666666666667;
         var data = new List<StockDataPoint>
-    {
-        StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 1), close: 100m),
-        StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 2), close: 102m),
-        StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 3), close: 101m)
-    };
+        {
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 1), close: 100m),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 2), close: 102m),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 3), close: 101m)
+        };
         var rsi = new RelativeStrengthIndex(period, x => x.Close);
         // Act
         var result = rsi.Calculate(Wrap(data));

@@ -23,13 +23,13 @@ public sealed class RelativeStrengthIndex : IMultiSeriesIndicator
     /// <param name="period">Number of data points per RSI calculation. Must be greater than zero.</param>
     /// <param name="selector">Selects the price value from each data point.</param>
     /// <exception cref="ArgumentNullException">Thrown if selector is null.</exception>
-    /// <exception cref="ArgumentOutOfRangeException">Thrown if period is less than or equal to zero.</exception>
+    /// <exception cref="ArgumentException">Thrown if period is less than or equal to zero.</exception>
     public RelativeStrengthIndex(int period, Func<StockDataPoint, decimal> selector)
     {
         if (selector == null)
             throw new ArgumentNullException(nameof(selector));
-        if (period <= 0)
-            throw new ArgumentOutOfRangeException(nameof(period), "Period must be greater than zero.");
+
+        InputValidation.ValidatePeriod(period, int.MaxValue);
 
         _period = period;
         _selector = selector;
@@ -68,7 +68,6 @@ public sealed class RelativeStrengthIndex : IMultiSeriesIndicator
     /// <exception cref="ArgumentException">Thrown if data is empty, unsorted, or too short.</exception>
     private IReadOnlyList<IndicatorResult> Calculate(IReadOnlyList<StockDataPoint> data)
     {
-        // Validate input
         InputValidation.ValidateData(data);
         InputValidation.ValidatePeriod(_period, data.Count);
         if (data.Count < _period + 1)
@@ -76,12 +75,6 @@ public sealed class RelativeStrengthIndex : IMultiSeriesIndicator
                 $"RSI requires at least {_period + 1} data points for period {_period}.",
                 nameof(data));
 
-        // RSI calculation logic (price changes, gains/losses, initial averages and Wilder's smoothing)
-        // adapted from:
-        // BT. (2021, March 16). A step-by-step guide for calculating reliable RSI values programmatically.
-        // Medium. https://turmanaube.medium.com/a-step-by-step-guide-for-calculating-reliable-rsi-values-programmatically-a6a604a06b77
-
-        // Calculate price changes and separate into gains and losses
         var gains = new List<decimal>();
         var losses = new List<decimal>();
         for (int i = 1; i < data.Count; i++)
@@ -91,7 +84,6 @@ public sealed class RelativeStrengthIndex : IMultiSeriesIndicator
             losses.Add(change < 0 ? Math.Abs(change) : 0);
         }
 
-        // Calculate initial average gain and loss over the first period
         decimal avgGain = 0;
         decimal avgLoss = 0;
         for (int i = 0; i < _period; i++)
@@ -102,11 +94,9 @@ public sealed class RelativeStrengthIndex : IMultiSeriesIndicator
         avgGain /= _period;
         avgLoss /= _period;
 
-        // Calculate first RSI value
         var results = new List<IndicatorResult>();
         results.Add(new IndicatorResult(data[_period].Timestamp, CalculateRsi(avgGain, avgLoss)));
 
-        // Apply Wilder's smoothing for remaining data points
         for (int i = _period + 1; i < data.Count; i++)
         {
             avgGain = (avgGain * (_period - 1) + gains[i - 1]) / _period;
