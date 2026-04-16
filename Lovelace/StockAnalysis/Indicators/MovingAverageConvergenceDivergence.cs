@@ -22,6 +22,10 @@ namespace Lovelace.StockAnalysis.Indicators
         /// <summary>
         /// Creates a new MACD indicator with the given periods and price selector.
         /// </summary>
+        /// <exception cref="ArgumentNullException">Thrown if <paramref name="selector"/> is null.</exception>
+        /// <exception cref="ArgumentException">Thrown if periods are less than or equals to 0
+        /// or if <paramref name="fastPeriod"/> is greater than or equals <paramref name="slowPeriod"/> </exception>
+
         public MovingAverageConvergenceDivergence(
             int fastPeriod,
             int slowPeriod,
@@ -49,10 +53,13 @@ namespace Lovelace.StockAnalysis.Indicators
         /// <summary>
         /// Calculates MACD line, signal line and histogram from the given stock data.
         /// </summary>
+        /// <exception cref="ArgumentException"> if data.Count is less than minimumRequired, if <paramref name="data"/> is empty.</exception>
+        /// <exception cref="ArgumentNullException">Thrown if <paramref name="data"/> is null.</exception>
+        /// <exception cref="DataOrderException">Thrown if the collection data is not sorted in chronological order by timestamp.</exception>
+
         public IReadOnlyDictionary<string, IReadOnlyList<IndicatorResult>> Calculate(IReadOnlyList<StockDataPoint> data)
         {
-            InputValidation.ValidateData(data);
-
+            InputValidation.ValidateData(data); 
             int minimumRequired = _slowPeriod + _signalPeriod - 1;
             if (data.Count < minimumRequired)
             {
