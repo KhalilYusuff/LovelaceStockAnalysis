@@ -10,7 +10,7 @@ namespace Lovelace.StockAnalysis.Indicators;
 /// Requires at least <c>period + 1</c> data points. Returns one result per data point
 /// starting at index <c>period</c>.
 /// </remarks>
-public sealed class RelativeStrengthIndex : IMultiSeriesIndicator
+public sealed class RelativeStrengthIndex : IIndicator
 {
     private readonly int _period;
     private readonly Func<StockDataPoint, decimal> _selector;
@@ -32,32 +32,13 @@ public sealed class RelativeStrengthIndex : IMultiSeriesIndicator
     /// <summary>
     /// Calculates RSI values for the provided stock data series.
     /// </summary>
-    /// <param name="series">
-    /// A collection of stock data series. Index 0 must contain
-    /// the price data used for RSI calculation. Cannot be null or empty.
+    /// <param name="data">
+    /// A collection of stock data points used for RSI calculation. Cannot be null or empty.
     /// </param>
-    /// <returns>A read-only list of RSI results between 0 and 100.</returns>
-    /// <exception cref="ArgumentNullException">Thrown if series is null.</exception>
-    /// <exception cref="ArgumentException">Thrown if series is empty.</exception>
-    public IReadOnlyList<IndicatorResult> Calculate(IReadOnlyList<IReadOnlyList<StockDataPoint>> series)
-    {
-        if (series == null)
-            throw new ArgumentNullException(nameof(series));
-        if (series.Count == 0)
-            throw new ArgumentException("Series collection cannot be empty.", nameof(series));
-
-        return Calculate(series[0]);
-    }
-
-    /// <summary>
-    /// Calculates RSI values for a single series of stock data points.
-    /// </summary>
-    /// <param name="data">The collection of stock data points to process. Cannot be null, must be sorted
-    /// chronologically, and contain enough entries for the configured period.</param>
     /// <returns>A read-only list of RSI results between 0 and 100.</returns>
     /// <exception cref="ArgumentNullException">Thrown if data is null.</exception>
     /// <exception cref="ArgumentException">Thrown if data is empty, unsorted, or too short.</exception>
-    private IReadOnlyList<IndicatorResult> Calculate(IReadOnlyList<StockDataPoint> data)
+    public IReadOnlyList<IndicatorResult> Calculate(IReadOnlyList<StockDataPoint> data)
     {
         InputValidation.ValidateData(data);
         InputValidation.ValidatePeriod(_period, data.Count);

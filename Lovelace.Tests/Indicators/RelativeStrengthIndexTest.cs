@@ -11,9 +11,6 @@ namespace Lovelace.StockAnalysis.Tests.Indicators;
 
 public class RelativeStrengthIndexTest
 {
-    private static List<IReadOnlyList<StockDataPoint>> Wrap(List<StockDataPoint> data)
-        => new List<IReadOnlyList<StockDataPoint>> { data };
-
     [TestMethod]
     public void Constructor_NullSelector_ThrowsArgumentNullException()
     {
@@ -24,10 +21,17 @@ public class RelativeStrengthIndexTest
     }
 
     [TestMethod]
-    public void Constructor_ZeroPeriod_ThrowsArgumentException()
+    public void Calculate_ZeroPeriod_ThrowsArgumentException()
     {
-        // Arrange & Act
-        Action act = () => new RelativeStrengthIndex(0, x => x.Close);
+        // Arrange
+        var data = new List<StockDataPoint>
+        {
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 1), close: 100m),
+            StockDataPointFactory.Create(timestamp: new DateTime(2024, 1, 2), close: 101m)
+        };
+        var rsi = new RelativeStrengthIndex(0, x => x.Close);
+        // Act
+        Action act = () => rsi.Calculate(data);
         // Assert
         Assert.ThrowsExactly<ArgumentException>(act);
     }
@@ -46,7 +50,7 @@ public class RelativeStrengthIndexTest
         };
         var rsi = new RelativeStrengthIndex(period, x => x.Close);
         // Act
-        var result = rsi.Calculate(Wrap(data));
+        var result = rsi.Calculate(data);
         // Assert
         Assert.AreEqual(expectedRsi, (double)result[0].Value, delta: 0.0000001);
     }
@@ -57,7 +61,7 @@ public class RelativeStrengthIndexTest
         // Arrange
         var rsi = new RelativeStrengthIndex(14, x => x.Close);
         // Act
-        Action act = () => rsi.Calculate((IReadOnlyList<IReadOnlyList<StockDataPoint>>)null!);
+        Action act = () => rsi.Calculate((IReadOnlyList<StockDataPoint>)null!);
         // Assert
         Assert.ThrowsExactly<ArgumentNullException>(act);
     }
@@ -73,7 +77,7 @@ public class RelativeStrengthIndexTest
         };
         var rsi = new RelativeStrengthIndex(14, x => x.Close);
         // Act
-        Action act = () => rsi.Calculate(Wrap(data));
+        Action act = () => rsi.Calculate(data);
         // Assert
         Assert.ThrowsExactly<ArgumentException>(act);
     }
